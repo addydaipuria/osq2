@@ -1,0 +1,16 @@
++SYSCALL_DEFINE2(kern_2D_memcpy, float *, matrix1, float *, matrix2)
++{
++	float merijon[4][4];
++	if(copy_from_user(&merijon,matrix2, sizeof(merijon)) != 0) 
++	{
++		return -EFAULT;
++	}
++
++	if(copy_to_user(matrix1,&merijon, sizeof(merijon)) != 0)
++	{
++		return -EFAULT;
++	}	
++
++	return 0;
++}
++
